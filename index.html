@@ -13,10 +13,44 @@
       body {
         height: 100vh;
         width: 100vw;
+        background: #1b1b1b;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: #FFFFFF;
       }
     </style>
   </head>
   <body>
     <h1>Feliz Cumpleaños Asier!</h1>
+    <h2 id="anios"></h2>
+    <script>
+      function calcularEdad(fechaNacimiento) {
+        const hoy = new Date();
+        const nacimiento = new Date(fechaNacimiento);
+
+        let edad = hoy.getFullYear() - nacimiento.getFullYear();
+
+        const mesActual = hoy.getMonth();
+        const diaActual = hoy.getDate();
+
+        const mesNacimiento = nacimiento.getMonth();
+        const diaNacimiento = nacimiento.getDate();
+
+        if (
+          mesActual < mesNacimiento ||
+          (mesActual === mesNacimiento && diaActual < diaNacimiento)
+        ) {
+          edad--;
+        }
+
+        return edad;
+      }
+
+      const fechaCumple = "2004-10-08";
+      const edad = calcularEdad(fechaCumple);
+      const h2 = document.getElementById("anios");
+      h2.textContent = `Ya son ${edad} años!!`;
+    </script>
   </body>
 </html>
